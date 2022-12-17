@@ -1,19 +1,28 @@
 {
-  "name": "smart-assistant",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@next/font": "13.0.7",
-    "eslint": "8.30.0",
-    "eslint-config-next": "13.0.7",
-    "next": "13.0.7",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  }
+    "name": "smart-assistant",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@next/font": "13.0.7",
+        "eslint": "8.30.0",
+        "eslint-config-next": "13.0.7",
+        "fs": "^0.0.1-security",
+        "next": "13.0.7",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "react-speech-recognition": "^3.10.0",
+        "regenerator-runtime": "^0.13.11",
+        "utils": "^0.3.1"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.13",
+        "postcss": "^8.4.20",
+        "tailwindcss": "^3.2.4"
+    }
 }
