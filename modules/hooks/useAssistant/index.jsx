@@ -1,41 +1,32 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from "react";
 
 export function useAssistant() {
-    const [response, setResponse] = useState(null)
+    const [datas, setDatas] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     const fetchResponse = useCallback((question) => {
-        console.log("🚀 ~ file: index.jsx:7 ~ fetchResponse ~ question", question)
-        
         const ask = () => {
-            console.log("🚀 ~ file: index.jsx:10 ~ fetchResponse ~ question", question)
             // use puppeteer to bypass cloudflare (headful because of captchas)
 
-            const openAIAuth = {
-              email: process.env.OPENAI_EMAIL,
-              password: process.env.OPENAI_PASSWORD
-            }
-            console.log("🚀 ~ file: index.jsx:17 ~ ask ~ openAIAuth", openAIAuth)
-          
-			fetch("https://api.openai.com/v1/completions", {
-				method: 'POST',
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: "Bearer " + "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"
-				},
-				body: JSON.stringify({
+            fetch("https://api.openai.com/v1/completions", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization:
+                        "Bearer " + process.env.NEXT_PUBLIC_OPENAI_PASSWORD,
+                },
+                body: JSON.stringify({
                     prompt: question,
-                    model: "text-davinci-003"
-                })
-			})
-            .then(res => res.json())
-            .then(json => setResponse(json))
-            .catch(err => console.log(err))
-          
-            //console.log("🚀 ~ file: index.jsx:14 ~ ask ~ result", result)
-          }
-          ask()
-    }, [])
+                    model: "text-davinci-003",
+                    max_tokens: 2000,
+                }),
+            })
+                .then((res) => res.json())
+                .then((json) => setDatas(json))
+                .catch((err) => console.log(err));
+        };
+        ask();
+    }, []);
 
-    return {fetchResponse}
+    return { fetchResponse, response: datas, setResponse: setDatas };
 }
-
