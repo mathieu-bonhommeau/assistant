@@ -6,7 +6,7 @@ import SpeechManager from "../modules/SpeechManager";
 const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
     return (
-        <>
+        <div className="bg-gradient-to-r from-cyan-500 to-blue-500">
             <Head>
                 <title>Smart assistant</title>
                 <meta name="description" content="My virtual assistant" />
@@ -16,8 +16,8 @@ export default function Home() {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main className="flex flex-col min-h-screen items-center gap-16 bg-gradient-to-r from-cyan-500 to-blue-500">
-                <div className={"flex flex-col items-center gap-10 mt-10"}>
+            <main className="flex flex-col max-w-2xl min-h-screen items-center gap-16  mx-auto">
+                <div className={"flex flex-col items-center gap-10 mt-10 w-full"}>
                     <h1 className="text-3xl text-yellow-400 font-bold text-shadow-lg">
                         My Virtual Assistant
                     </h1>
@@ -31,12 +31,12 @@ export default function Home() {
                     />
                 </div>
 
-                <div className="">
+                <div className="w-full px-3">
                     <div className="flex flex-col">
                         <SpeechManager />
                     </div>
                 </div>
             </main>
-        </>
+        </div>
     );
 }

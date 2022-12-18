@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Dictaphone from "../Dictaphone";
 import { useAssistant } from "../hooks/useAssistant";
 import { useSpeechSynthesis } from "react-speech-kit";
 
 function SpeechManager() {
     const [question, setQuestion] = useState("");
+    const [sendQuestion, setSendQuestion] = useState(false)
     const { fetchResponse, response, setResponse } = useAssistant(question);
     const { speak } = useSpeechSynthesis();
+    
+    useEffect(() => {
+        console.log(sendQuestion)
+        if (sendQuestion) {
+            setResponse(fetchResponse(question))
+            setSendQuestion(false)
+        };
+    }, [sendQuestion])
 
     const handleClick = () => {
         setResponse(fetchResponse(question));
@@ -18,7 +27,7 @@ function SpeechManager() {
 
     return (
         <>
-            <div className={"flex flex-col gap-3"}>
+            <div className={"flex flex-col gap-3 w-full"}>
                 <textarea
                     type="text"
                     onChange={handleChange}
@@ -34,7 +43,7 @@ function SpeechManager() {
                 </button>
             </div>
             <div>
-                <Dictaphone setQuestion={setQuestion} />
+                <Dictaphone setQuestion={setQuestion} setSendQuestion={setSendQuestion}/>
             </div>
             <button
                 className="w-full mt-5 shadow-lg focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-black text-lg px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"
@@ -42,7 +51,7 @@ function SpeechManager() {
             >
                 Speak
             </button>
-            <div className="w-full bg-white rounded-lg my-5">
+            <div className="w-full bg-white rounded-lg my-5 p-5">
                 {response?.choices[0]?.text}
             </div>
         </>
