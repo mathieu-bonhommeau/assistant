@@ -6,7 +6,7 @@ import SpeechManager from "../modules/SpeechManager";
 const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
     return (
-        <div className="bg-gradient-to-r from-cyan-500 to-blue-500">
+        <div className="bg-black">
             <Head>
                 <title>Smart assistant</title>
                 <meta name="description" content="My virtual assistant" />
@@ -16,21 +16,20 @@ export default function Home() {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main className="flex flex-col max-w-2xl min-h-screen items-center gap-16  mx-auto">
-                <div className={"flex flex-col items-center gap-10 mt-10 w-full"}>
-                    <h1 className="text-3xl text-yellow-400 font-bold text-shadow-lg">
-                        My Virtual Assistant
-                    </h1>
+            <main className="flex flex-col max-w-screen-md min-h-screen items-center mx-auto px-6">
+                <div className={"flex flex-col items-center w-full mb-10"}>
                     <Image
-                        className=""
-                        src="/bot.png"
+                        className="w-128 sm:w-96"
+                        src="/ia.gif"
                         alt="Next.js Logo"
-                        width={180}
-                        height={37}
+                        width={820}
+                        height={1104}
                         priority
                     />
+                    <div className="text-white text-2xl sm:text-3xl md:text-4xl my-0 primary-title text-center">
+                        JE VOUS ECOUTE !
+                    </div>
                 </div>
-
                 <div className="w-full px-3">
                     <div className="flex flex-col">
                         <SpeechManager />

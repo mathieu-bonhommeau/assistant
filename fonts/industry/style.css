@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Industry';
+    src: local('Industry Book'), local('Industry-Book'),
+        url('Industry-Book.woff2') format('woff2'),
+        url('Industry-Book.woff') format('woff'),
+        url('Industry-Book.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }

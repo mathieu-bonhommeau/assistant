@@ -7,9 +7,10 @@ import { FaRegStopCircle } from "react-icons/fa";
 import { BiReset } from "react-icons/bi";
 import Image from "next/image";
 
-const Dictaphone = ({ setQuestion, setSendQuestion }) => {
-    const [isListen, setIsListen] = useState(false)
-    const [speechRecognitionSupported, setSpeechRecognitionSupported] = useState(null);
+const Dictaphone = ({ setQuestion, setSendQuestion, play, setPlay }) => {
+    const [isListen, setIsListen] = useState(false);
+    const [speechRecognitionSupported, setSpeechRecognitionSupported] =
+        useState(null);
     const {
         transcript,
         listening,
@@ -27,12 +28,18 @@ const Dictaphone = ({ setQuestion, setSendQuestion }) => {
     }, [setQuestion, transcript]);
 
     useEffect(() => {
-        if (listening) setIsListen(true)
+        if (listening) setIsListen(true);
         if (!listening && isListen) {
-            setSendQuestion(true)
-            setIsListen(false)
+            setSendQuestion(true);
+            setIsListen(false);
+            setPlay(false);
         }
-    }, [listening, isListen, setSendQuestion])
+    }, [listening, isListen, setSendQuestion]);
+
+    useEffect(() => {
+        if (play) SpeechRecognition.startListening();
+        if (!play) SpeechRecognition.stopListening();
+    }, [play]);
 
     if (speechRecognitionSupported === null) return null;
 
@@ -44,33 +51,12 @@ const Dictaphone = ({ setQuestion, setSendQuestion }) => {
             <div className="w-full flex justify-between">
                 <div className="flex gap-4">
                     <button
-                        className="rounded px-4 py-2 bg-green-500"
-                        onClick={SpeechRecognition.startListening}
-                        >
-                        <AiFillPlayCircle />
+                        className="rounded px-4 py-2 bg-cyan-500"
+                        onClick={resetTranscript}
+                    >
+                        <BiReset />
                     </button>
-                    {listening &&
-                        <Image
-                                className="w-6 h-6 animate-ping"
-                                src="/voice.png"
-                                alt="voice"
-                                width={64}
-                                height={64}
-                                priority
-                        />}
-                    </div>
-                <button
-                    className="rounded px-4 py-2 bg-red-500"
-                    onClick={SpeechRecognition.stopListening}
-                >
-                    <FaRegStopCircle />
-                </button>
-                <button
-                    className="rounded px-4 py-2 bg-cyan-500"
-                    onClick={resetTranscript}
-                >
-                    <BiReset />
-                </button>
+                </div>
             </div>
         </div>
     );
