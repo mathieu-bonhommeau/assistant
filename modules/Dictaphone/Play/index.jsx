@@ -1,8 +1,10 @@
 import Image from "next/image";
 import React from "react";
+import { IoIosMic } from "react-icons/io";
 
 function Play({ SpeechRecognition, speechUtils }) {
     const { listening } = speechUtils;
+    console.log("🚀 ~ file: index.jsx:7 ~ Play ~ listening", listening);
     return listening
         ? displayVocal(SpeechRecognition)["start"]
         : displayVocal(SpeechRecognition)["stop"];
@@ -13,19 +15,12 @@ const displayVocal = (SpeechRecognition) => {
         stop: (
             <button
                 type="button"
-                className="mx-auto md:hover:scale-125 transition-all w-24 h-24 sm:w-48 sm:w-48"
+                className="icon-wrapper icon-wrapper-play"
                 onClick={() => {
                     SpeechRecognition.startListening();
                 }}
             >
-                <Image
-                    className="w-full h-full"
-                    src="/voice.svg"
-                    alt="Next.js Logo"
-                    width={512}
-                    height={512}
-                    priority={true}
-                />
+                <IoIosMic className="icon icon-play mx-auto" />
             </button>
         ),
         start: (

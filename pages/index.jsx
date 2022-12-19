@@ -26,7 +26,7 @@ export default function Home() {
                         height={1104}
                         priority={true}
                     />
-                    <div className="text-white text-2xl sm:text-3xl md:text-4xl my-0 primary-title text-center">
+                    <div className="text-white text-3xl text-3xl md:text-4xl my-0 primary-title text-center">
                         JE VOUS ECOUTE !
                     </div>
                 </div>

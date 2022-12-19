@@ -2,13 +2,15 @@ import React, { useCallback, useEffect, useState } from "react";
 
 export function useAssistant() {
     const [datas, setDatas] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isInit, setIsInit] = useState(true);
     const [error, setError] = useState(null);
 
     const fetchResponse = useCallback((question) => {
         const ask = () => {
             // use puppeteer to bypass cloudflare (headful because of captchas)
-
+            setIsInit(false);
+            setIsLoading(true);
             fetch("https://api.openai.com/v1/completions", {
                 method: "POST",
                 headers: {
@@ -23,11 +25,21 @@ export function useAssistant() {
                 }),
             })
                 .then((res) => res.json())
-                .then((json) => setDatas(json))
+                .then((json) => {
+                    setDatas(json);
+                    setIsLoading(false);
+                })
                 .catch((err) => setError(err));
         };
         ask();
     }, []);
 
-    return { fetchResponse, response: datas, setResponse: setDatas, error };
+    return {
+        fetchResponse,
+        response: datas,
+        setResponse: setDatas,
+        error,
+        isLoading,
+        isInit,
+    };
 }

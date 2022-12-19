@@ -4,10 +4,11 @@ import React from "react";
 function SendQuestion({ handleSendQuestion }) {
     return (
         <button
-            className="w-16 h-16 md:hover:scale-125 transition-all"
+            className="icon-wrapper icon-wrapper-send"
             onClick={handleSendQuestion}
         >
             <Image
+                className="icon icon-send mx-auto"
                 src={"/send.png"}
                 width={329}
                 height={262}

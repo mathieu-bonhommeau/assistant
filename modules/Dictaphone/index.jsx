@@ -36,6 +36,11 @@ const Dictaphone = ({
     if (!browserSupportsSpeechRecognition) {
         return <span>Browser doesn't support speech recognition.</span>;
     }
-    return <div>{children}</div>;
+    return (
+        <div>
+            {browserSupportsSpeechRecognition}
+            {children}
+        </div>
+    );
 };
 export default Dictaphone;

@@ -19,7 +19,7 @@
     background-repeat: no-repeat;
     background-size: 20%;
     animation: animate 3s infinite linear alternate;
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: rgba(255, 255, 255, 0.4);
 }
 
@@ -99,4 +99,150 @@
 .bar:nth-child(10) {
     left: 127px;
     animation-duration: 442ms;
+}
+
+.response-box {
+    min-height: 200px;
+}
+
+.icon-wrapper {
+    line-height: 75px;
+    margin: 0 10px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    float: left;
+    transition: all 0.5s ease;
+}
+.icon {
+    color: #d8e2dc;
+    font-size: 65px;
+    transition: all 0.5s ease;
+}
+.icon-wrapper-play {
+    width: 90px;
+    height: 90px;
+    border: 5px solid #701816;
+}
+.icon-wrapper-play:hover {
+    border: 5px solid #9bac00;
+    box-shadow: 0 0 15px #9bac00;
+    transition: all 0.5s ease;
+}
+.icon-play {
+    color: #701816;
+}
+.icon-play:hover {
+    transition: all 0.5s ease;
+}
+
+.icon-wrapper-reset {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border: 5px solid #000000;
+}
+.icon-wrapper-reset:hover {
+    border: 3px solid #9bac00;
+    box-shadow: 0 0 15px #9bac00;
+    transition: all 0.5s ease;
+}
+.icon-reset {
+    position: relative;
+    width: 50px;
+    color: #701816;
+}
+.icon-reset:hover {
+    width: 40px;
+    transition: all 0.5s ease;
+}
+
+.icon-wrapper-send {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border: 5px solid #000000;
+}
+.icon-wrapper-send:hover {
+    border: 3px solid #9bac00;
+    box-shadow: 0 0 15px #9bac00;
+    transition: all 0.5s ease;
+}
+.icon-send {
+    position: relative;
+    top: 4px;
+    width: 50px;
+    color: #701816;
+}
+.icon-send:hover {
+    width: 40px;
+    transition: all 0.5s ease;
+}
+
+.speak {
+    transition: all 0.5s ease;
+}
+.speak:hover {
+    color: #9bac00;
+    position: relative;
+    text-shadow: 0 0 2px #9bac00;
+}
+
+.lds-ripple {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.lds-ripple div {
+    position: absolute;
+    border: 4px solid #9bac00;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+    0% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    4.9% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    5% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+    }
+}
+
+.ready {
+    font-family: "Industry";
+    position: relative;
+    background: linear-gradient(90deg, #2a37ec, #fff, #000);
+    background-repeat: no-repeat;
+    background-size: 20%;
+    animation: animate 3s infinite linear alternate;
+    background-clip: text;
+    -webkit-text-fill-color: rgba(155, 155, 155, 0.2);
 }

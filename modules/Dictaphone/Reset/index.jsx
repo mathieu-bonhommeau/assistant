@@ -4,10 +4,11 @@ import React from "react";
 function Reset({ handleReset }) {
     return (
         <button
-            className="w-16 h-16 md:hover:scale-125 transition-all"
+            className="icon-wrapper icon-wrapper-reset"
             onClick={handleReset}
         >
             <Image
+                className="icon icon-reset mx-auto"
                 src={"/reset.png"}
                 width={329}
                 height={262}

@@ -13,7 +13,7 @@ import SendQuestion from "../SendQuestion";
 function SpeechManager() {
     const [question, setQuestion] = useState("");
     const [sendQuestion, setSendQuestion] = useState(false);
-    const { fetchResponse, response, setResponse, error } =
+    const { fetchResponse, response, setResponse, error, isLoading, isInit } =
         useAssistant(question);
     const speechUtils = useSpeechRecognition();
 
@@ -62,16 +62,41 @@ function SpeechManager() {
                     />
                     <div className="flex justify-between items-center gap-5 px-2.5">
                         <Reset handleReset={handleReset} />
-                        <Speak />
+                        <Speak response={response} />
                         <SendQuestion handleSendQuestion={handleSendQuestion} />
                     </div>
                 </div>
-                <div className="w-full bg-white rounded-lg my-5 p-5">
-                    {response?.choices[0]?.text}
-                </div>
+                {getResponseContent(isLoading, isInit, response)}
             </Dictaphone>
         </>
     );
 }
+
+const getResponseContent = (isLoading, isInit, response) => {
+    if (isInit) {
+        return (
+            <div className="ready py-10 text-2xl opacity-90 md:text-3xl text-center">
+                READY .... !!
+            </div>
+        );
+    }
+    if (!isInit && isLoading) {
+        return (
+            <div className="flex justify-center py-10">
+                <div className="lds-ripple">
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        );
+    }
+    if (!isInit && !isLoading) {
+        return (
+            <div className="response-box w-full bg-zinc-900 text-white rounded-lg my-5 p-5">
+                {response?.choices[0]?.text}
+            </div>
+        );
+    }
+};
 
 export default SpeechManager;
