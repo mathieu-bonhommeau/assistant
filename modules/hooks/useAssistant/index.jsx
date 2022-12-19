@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 export function useAssistant() {
     const [datas, setDatas] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const fetchResponse = useCallback((question) => {
         const ask = () => {
@@ -23,10 +24,10 @@ export function useAssistant() {
             })
                 .then((res) => res.json())
                 .then((json) => setDatas(json))
-                .catch((err) => console.log(err));
+                .catch((err) => setError(err));
         };
         ask();
     }, []);
 
-    return { fetchResponse, response: datas, setResponse: setDatas };
+    return { fetchResponse, response: datas, setResponse: setDatas, error };
 }

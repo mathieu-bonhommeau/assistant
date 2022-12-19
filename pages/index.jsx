@@ -24,7 +24,7 @@ export default function Home() {
                         alt="Next.js Logo"
                         width={820}
                         height={1104}
-                        priority
+                        priority={true}
                     />
                     <div className="text-white text-2xl sm:text-3xl md:text-4xl my-0 primary-title text-center">
                         JE VOUS ECOUTE !
