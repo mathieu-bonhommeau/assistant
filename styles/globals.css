@@ -124,16 +124,9 @@
     height: 90px;
     border: 5px solid #701816;
 }
-.icon-wrapper-play:hover {
-    border: 5px solid #9bac00;
-    box-shadow: 0 0 15px #9bac00;
-    transition: all 0.5s ease;
-}
+
 .icon-play {
     color: #701816;
-}
-.icon-play:hover {
-    transition: all 0.5s ease;
 }
 
 .icon-wrapper-reset {
@@ -142,19 +135,11 @@
     height: 60px;
     border: 5px solid #000000;
 }
-.icon-wrapper-reset:hover {
-    border: 3px solid #9bac00;
-    box-shadow: 0 0 15px #9bac00;
-    transition: all 0.5s ease;
-}
+
 .icon-reset {
     position: relative;
     width: 50px;
     color: #701816;
-}
-.icon-reset:hover {
-    width: 40px;
-    transition: all 0.5s ease;
 }
 
 .icon-wrapper-send {
@@ -163,26 +148,53 @@
     height: 60px;
     border: 5px solid #000000;
 }
-.icon-wrapper-send:hover {
-    border: 3px solid #9bac00;
-    box-shadow: 0 0 15px #9bac00;
-    transition: all 0.5s ease;
-}
+
 .icon-send {
     position: relative;
     top: 4px;
     width: 50px;
     color: #701816;
 }
-.icon-send:hover {
-    width: 40px;
-    transition: all 0.5s ease;
+
+@media screen and (min-width: 768px) {
+    .icon-wrapper-play:hover {
+        border: 5px solid #9bac00;
+        box-shadow: 0 0 15px #9bac00;
+        transition: all 0.5s ease;
+    }
+    .icon-play:hover {
+        transition: all 0.5s ease;
+    }
+    .icon-wrapper-reset:hover {
+        border: 3px solid #9bac00;
+        box-shadow: 0 0 15px #9bac00;
+        transition: all 0.5s ease;
+    }
+    .icon-reset:hover {
+        width: 40px;
+        transition: all 0.5s ease;
+    }
+    .icon-wrapper-send:hover {
+        border: 3px solid #9bac00;
+        box-shadow: 0 0 15px #9bac00;
+        transition: all 0.5s ease;
+    }
+    .icon-send:hover {
+        width: 40px;
+        transition: all 0.5s ease;
+    }
+    .speak:hover {
+        color: #9bac00;
+        position: relative;
+        text-shadow: 0 0 2px #9bac00;
+    }
 }
 
 .speak {
     transition: all 0.5s ease;
 }
-.speak:hover {
+
+.isSpeaking {
     color: #9bac00;
     position: relative;
     text-shadow: 0 0 2px #9bac00;

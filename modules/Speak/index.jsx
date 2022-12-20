@@ -1,29 +1,32 @@
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useSpeechSynthesis } from "react-speech-kit";
 
 function Speak({ response }) {
-    const { speak } = useSpeechSynthesis();
-    const [readText, setReadText] = useState("");
+    const { speak, cancel } = useSpeechSynthesis();
+    const [isRead, setIsRead] = useState(false);
 
     useEffect(() => {
-        setReadText(response);
-    });
+        if (response) {
+            setIsRead(true);
+            speak({ text: response });
+        }
+    }, [response]);
+
+    const handleClick = () => {
+        setIsRead(!isRead);
+        if (isRead) cancel();
+        if (!isRead && response) speak({ text: response });
+    };
 
     return (
-        <button onClick={() => speak({ text: response?.choices[0]?.text })}>
-            <div className="primary-title speak mx-auto text-3xl md:text-4xl">
+        <button onClick={response ? handleClick : null}>
+            <div
+                className={`primary-title speak mx-auto text-3xl md:text-4xl ${
+                    isRead && "isSpeaking"
+                }`}
+            >
                 PLAY
             </div>
-            {/* <HiSpeakerWave className="icon icon-speak mx-auto" /> */}
-            {/* <Image
-                className="icon icon-speak mx-auto"
-                src={"/speaker.png"}
-                width={329}
-                height={262}
-                alt="send"
-                priority={true}
-            /> */}
         </button>
     );
 }

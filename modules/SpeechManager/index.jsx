@@ -6,9 +6,9 @@ import Speak from "../Speak";
 import SpeechRecognition, {
     useSpeechRecognition,
 } from "react-speech-recognition";
-import Image from "next/image";
 import Reset from "../Dictaphone/Reset";
 import SendQuestion from "../SendQuestion";
+import { useRouter } from "next/router";
 
 function SpeechManager() {
     const [question, setQuestion] = useState("");
@@ -16,6 +16,7 @@ function SpeechManager() {
     const { fetchResponse, response, setResponse, error, isLoading, isInit } =
         useAssistant(question);
     const speechUtils = useSpeechRecognition();
+    const router = useRouter();
 
     useEffect(() => {
         if (sendQuestion) {
@@ -23,6 +24,12 @@ function SpeechManager() {
             setSendQuestion(false);
         }
     }, [sendQuestion]);
+
+    useEffect(() => {
+        if (response) {
+            router.push("/#response");
+        }
+    }, [response]);
 
     const handleSendQuestion = () => {
         setResponse(fetchResponse(question));
@@ -60,7 +67,10 @@ function SpeechManager() {
                         rows="4"
                         className="block p-2.5 w-full text-sm text-white bg-gray-900 rounded-lg border-none shadow-lg focus:outline-4"
                     />
-                    <div className="flex justify-between items-center gap-5 px-2.5">
+                    <div
+                        id="response"
+                        className="flex justify-between items-center gap-5 px-2.5"
+                    >
                         <Reset handleReset={handleReset} />
                         <Speak response={response} />
                         <SendQuestion handleSendQuestion={handleSendQuestion} />
@@ -93,7 +103,7 @@ const getResponseContent = (isLoading, isInit, response) => {
     if (!isInit && !isLoading) {
         return (
             <div className="response-box w-full bg-zinc-900 text-white rounded-lg my-5 p-5">
-                {response?.choices[0]?.text}
+                {response}
             </div>
         );
     }

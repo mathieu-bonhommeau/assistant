@@ -26,7 +26,7 @@ export function useAssistant() {
             })
                 .then((res) => res.json())
                 .then((json) => {
-                    setDatas(json);
+                    setDatas(cleanDatas(json?.choices[0]?.text));
                     setIsLoading(false);
                 })
                 .catch((err) => setError(err));
@@ -43,3 +43,8 @@ export function useAssistant() {
         isInit,
     };
 }
+
+const cleanDatas = (datas) => {
+    datas.substring(0, datas.search(/[A-Za-z0-9]/g)).trim();
+    return datas;
+};

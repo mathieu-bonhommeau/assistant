@@ -1,10 +1,8 @@
-import Image from "next/image";
 import React from "react";
 import { IoIosMic } from "react-icons/io";
 
 function Play({ SpeechRecognition, speechUtils }) {
     const { listening } = speechUtils;
-    console.log("🚀 ~ file: index.jsx:7 ~ Play ~ listening", listening);
     return listening
         ? displayVocal(SpeechRecognition)["start"]
         : displayVocal(SpeechRecognition)["stop"];

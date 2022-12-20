@@ -2,11 +2,13 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import SpeechManager from "../modules/SpeechManager";
+import { useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
+
 export default function Home() {
     return (
-        <div className="bg-black">
+        <div className="bg-black scroll-smooth">
             <Head>
                 <title>Smart assistant</title>
                 <meta name="description" content="My virtual assistant" />
