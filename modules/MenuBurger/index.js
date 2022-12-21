@@ -1,26 +1,33 @@
+import { css } from "goober";
 import React from "react";
-import { pushRotate as Menu } from "react-burger-menu";
+import { scaleRotate as Menu } from "react-burger-menu";
+import Toggle from "../Toggle";
 
 function MenuBurger({ pageWrapId, outerContainerId }) {
     return (
-        <Menu pageWrapId={pageWrapId} outerContainerId={outerContainerId}>
-            <a id="home" className="menu-item" href="/">
-                Home
-            </a>
-            <a id="about" className="menu-item" href="/about">
-                About
-            </a>
-            <a id="contact" className="menu-item" href="/contact">
-                Contact
-            </a>
-            <a
-                /* onClick={this.showSettings} */ className="menu-item--small"
-                href=""
-            >
-                Settings
-            </a>
+        <Menu
+            pageWrapId={pageWrapId}
+            outerContainerId={outerContainerId}
+            burgerBarClassName={css(getBurgerIconCss)}
+            menuClassName={css(getMenuCss)}
+        >
+            <div className="border-b-2 flex justify-between border-zinc-800 py-4">
+                <p className="mb-3">Lecture automatique</p>
+                <div className="pb-3">
+                    <Toggle />
+                </div>
+            </div>
         </Menu>
     );
 }
+
+const getBurgerIconCss = {
+    background: "#70181677",
+    borderRadius: "2px",
+};
+
+const getMenuCss = {
+    background: "rgb(17, 24, 39)",
+};
 
 export default MenuBurger;
