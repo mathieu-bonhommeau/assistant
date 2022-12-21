@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useSpeechSynthesis } from "react-speech-kit";
 
@@ -7,8 +8,8 @@ function Speak({ response }) {
 
     useEffect(() => {
         if (response) {
-            setIsRead(true);
-            speak({ text: response });
+            //setIsRead(true);
+            //speak({ text: response });
         }
     }, [response]);
 
@@ -19,15 +20,17 @@ function Speak({ response }) {
     };
 
     return (
-        <button onClick={response ? handleClick : null}>
-            <div
-                className={`primary-title speak mx-auto text-3xl md:text-4xl ${
-                    isRead && "isSpeaking"
-                }`}
-            >
-                PLAY
-            </div>
-        </button>
+        <div className="flex gap-3 items-center">
+            <button onClick={response ? handleClick : null}>
+                <span
+                    className={`primary-title speak mx-auto text-3xl md:text-4xl ${
+                        isRead && "isSpeaking"
+                    }`}
+                >
+                    PLAY
+                </span>
+            </button>
+        </div>
     );
 }
 
