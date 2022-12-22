@@ -1,9 +1,12 @@
 import { css } from "goober";
-import React from "react";
+import React, { useContext } from "react";
 import { scaleRotate as Menu } from "react-burger-menu";
+import { ReadAutoContext } from "../Context/ReadAutoContext";
 import Toggle from "../Toggle";
 
 function MenuBurger({ pageWrapId, outerContainerId }) {
+    const { isReadAuto } = useContext(ReadAutoContext);
+
     return (
         <Menu
             pageWrapId={pageWrapId}
@@ -12,8 +15,11 @@ function MenuBurger({ pageWrapId, outerContainerId }) {
             menuClassName={css(getMenuCss)}
         >
             <div className="border-b-2 flex justify-between border-zinc-800 py-4">
-                <p className="mb-3">Lecture automatique</p>
-                <div className="pb-3">
+                <p className="mb-5 text-xl">Lecture automatique</p>
+                <div className="pb-3 flex justify-between">
+                    <span className="text-md">
+                        {isReadAuto ? "Activé" : "Désactivé"}
+                    </span>
                     <Toggle />
                 </div>
             </div>
@@ -22,7 +28,7 @@ function MenuBurger({ pageWrapId, outerContainerId }) {
 }
 
 const getBurgerIconCss = {
-    background: "#70181677",
+    background: "#701816AA",
     borderRadius: "2px",
 };
 
