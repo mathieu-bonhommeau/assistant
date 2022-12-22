@@ -1,15 +1,16 @@
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useSpeechSynthesis } from "react-speech-kit";
+import { ReadAutoContext } from "../Context/ReadAutoContext";
 
 function Speak({ response }) {
     const { speak, cancel } = useSpeechSynthesis();
     const [isRead, setIsRead] = useState(false);
+    const { isReadAuto } = useContext(ReadAutoContext);
 
     useEffect(() => {
-        if (response) {
-            //setIsRead(true);
-            //speak({ text: response });
+        if (response && isReadAuto) {
+            setIsRead(true);
+            speak({ text: response });
         }
     }, [response]);
 
