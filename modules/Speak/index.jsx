@@ -2,10 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { useSpeechSynthesis } from "react-speech-kit";
 import { ReadAutoContext } from "../Context/ReadAutoContext";
 
-function Speak({ response }) {
+function Speak({ response, message }) {
     const { speak, cancel } = useSpeechSynthesis();
     const [isRead, setIsRead] = useState(false);
     const { isReadAuto } = useContext(ReadAutoContext);
+
+    useEffect(() => {
+        if (message) {
+            speak({ text: message });
+        }
+    }, [message]);
 
     useEffect(() => {
         if (response && isReadAuto) {

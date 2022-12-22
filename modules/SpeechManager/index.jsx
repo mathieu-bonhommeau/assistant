@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Dictaphone from "../Dictaphone";
 import { useAssistant } from "../hooks/useAssistant";
 import Play from "../Dictaphone/Play";
@@ -9,13 +9,27 @@ import SpeechRecognition, {
 import Reset from "../Dictaphone/Reset";
 import SendQuestion from "../SendQuestion";
 import { useRouter } from "next/router";
+import { ReadPersoContext } from "../Context/ReadPersoContext";
 
 function SpeechManager() {
     const [question, setQuestion] = useState("");
     const [sendQuestion, setSendQuestion] = useState(false);
+    const { message, setMessage } = useContext(ReadPersoContext);
+
+    const firstName = "Mathieu";
+    const iaName = "Lucie";
+    const commands = [
+        {
+            command: `Toc toc ${iaName}`,
+            callback: (obj) =>
+                setMessage(`Salut ${firstName}, besoin d'aide ?`),
+        },
+    ];
+
     const { fetchResponse, response, setResponse, error, isLoading, isInit } =
         useAssistant(question);
-    const speechUtils = useSpeechRecognition();
+
+    const speechUtils = useSpeechRecognition({ commands });
     const router = useRouter();
 
     useEffect(() => {
@@ -56,6 +70,7 @@ function SpeechManager() {
                     <Play
                         SpeechRecognition={SpeechRecognition}
                         speechUtils={speechUtils}
+                        /* message={message} */
                     />
                 </div>
                 <div className={"flex flex-col gap-3 w-full"}>
@@ -72,7 +87,7 @@ function SpeechManager() {
                         className="flex justify-between items-center gap-5 px-2.5"
                     >
                         <Reset handleReset={handleReset} />
-                        <Speak response={response} />
+                        <Speak response={response} message={message} />
                         <SendQuestion handleSendQuestion={handleSendQuestion} />
                     </div>
                 </div>
