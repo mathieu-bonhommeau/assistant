@@ -10,10 +10,7 @@ function ReadAutoProvider({ children }) {
     }, [isReadAuto, setIsReadAuto]);
 
     return (
-        <ReadAutoContext.Provider
-            value={stateReadAuto}
-            setIsReadAuto={setIsReadAuto}
-        >
+        <ReadAutoContext.Provider value={stateReadAuto}>
             {children}
         </ReadAutoContext.Provider>
     );

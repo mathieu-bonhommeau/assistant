@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 
 export function useAssistant() {
     const [datas, setDatas] = useState(null);
@@ -45,6 +45,7 @@ export function useAssistant() {
 }
 
 const cleanDatas = (datas) => {
-    datas.substring(0, datas.search(/[A-Za-z0-9]/g)).trim();
+    datas.trim().substring(0, 1);
+    datas.substring(0, 1);
     return datas;
 };
